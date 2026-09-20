@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seven Deadly Sins</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at center, #351010 0%, #120606 45%, #030303 100%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle, rgba(255,80,0,.12) 1px, transparent 2px);
+    background-size: 45px 45px;
+    animation: stars 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(45px); }
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 70px 20px 35px;
+    position: relative;
+}
+
+header h1 {
+    font-size: clamp(42px, 8vw, 90px);
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    color: #ffbd45;
+    text-shadow:
+        0 0 10px #ff4d00,
+        0 0 30px #ff2500,
+        0 0 60px #ff0000;
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+header p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #ddd;
+    letter-spacing: 4px;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow:
+        0 0 10px #ff4d00,
+        0 0 25px #ff2500;
+    }
+    to {
+        text-shadow:
+        0 0 20px #ffd000,
+        0 0 50px #ff3300,
+        0 0 80px #ff0000;
+    }
+}
+
+/* MAIN */
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* HERO */
+.hero {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.hero span {
+    color: #ff9d00;
+}
+
+.hero p {
+    max-width: 650px;
+    line-height: 1.7;
+    color: #bbb;
+}
+
+/* ROTATING IMAGE */
+.rotate-wrapper {
+    width: 230px;
+    height: 230px;
+    perspective: 1000px;
+    margin: 35px auto;
+}
+
+.rotating-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid #ff8c00;
+    box-shadow:
+        0 0 20px #ff3c00,
+        0 0 50px #ff1500;
+    object-fit: cover;
+
+    animation: rotateImage 5s linear infinite;
+}
+
+@keyframes rotateImage {
+    from {
+        transform: rotateY(0deg) rotateZ(0deg);
+    }
+    to {
+        transform: rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+/* SINS */
+.section-title {
+    text-align: center;
+    font-size: 35px;
+    margin: 60px 0 35px;
+    color: #ffb52e;
+    text-shadow: 0 0 20px red;
+}
+
+.sins {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    padding-bottom: 70px;
+}
+
+/* CARD */
+.card {
+    position: relative;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #100909;
+    border: 1px solid rgba(255,100,0,.5);
+    box-shadow: 0 10px 35px rgba(0,0,0,.7);
+    transition: .5s;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow:
+        0 15px 50px rgba(255,50,0,.45),
+        0 0 30px rgba(255,130,0,.3);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s;
+    filter: brightness(.65);
+}
+
+.card:hover img {
+    transform: scale(1.12) rotate(2deg);
+    filter: brightness(.9);
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.95)
+    );
+}
+
+.card-content h3 {
+    font-size: 25px;
+    color: #ffb72e;
+    margin-bottom: 7px;
+}
+
+.card-content p {
+    color: #ddd;
+    font-size: 14px;
+}
+
+/* SYMBOL */
+.symbol {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.65);
+    border: 2px solid #ff9d00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    animation: symbolSpin 4s linear infinite;
+}
+
+@keyframes symbolSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    background: rgba(0,0,0,.6);
+    border-top: 1px solid #411;
+    color: #777;
+}
+
+footer strong {
+    color: #ff9d00;
+}
+
+/* FIRE EFFECT */
+.fire {
+    position: fixed;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background:
+        radial-gradient(ellipse at center,
+        rgba(255,100,0,.5),
+        transparent 70%);
+    filter: blur(15px);
+    animation: fireMove 2s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes fireMove {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(1.15);
+    }
+}
+
+/* MOBILE */
+@media(max-width:600px) {
+
+    header {
+        padding-top: 45px;
+    }
+
+    header h1 {
+        letter-spacing: 3px;
+    }
+
+    .rotate-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+
+    .card {
+        height: 320px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Deadly Sins</h1>
+    <p>THE SEVEN DEADLY SINS</p>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+
+        <div class="rotate-wrapper">
+            <!-- GANTI URL GAMBAR DI SINI -->
+            <img
+                class="rotating-image"
+                src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80"
+                alt="Deadly Sins">
+        </div>
+
+        <h2>WELCOME TO THE <span>SEVEN SINS</span></h2>
+
+        <p>
+            Tujuh dosa mematikan, tujuh kekuatan luar biasa.
+            Masuki dunia penuh kekuatan, kegelapan, pertarungan,
+            dan legenda.
+        </p>
+
+    </section>
+
+    <h2 class="section-title">THE SEVEN DEADLY SINS</h2>
+
+    <section class="sins">
+
+        <!-- MELIODAS -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80"
+                 alt="Meliodas">
+
+            <div class="symbol">🐉</div>
+
+            <div class="card-content">
+                <h3>Meliodas</h3>
+                <p>Dragon's Sin of Wrath</p>
+            </div>
+        </div>
+
+        <!-- BAN -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80"
+                 alt="Ban">
+
+            <div class="symbol">🦊</div>
+
+            <div class="card-content">
+                <h3>Ban</h3>
+                <p>Fox's Sin of Greed</p>
+            </div>
+        </div>
+
+        <!-- KING -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?auto=format&fit=crop&w=700&q=80"
+                 alt="King">
+
+            <div class="symbol">🐻</div>
+
+            <div class="card-content">
+                <h3>King</h3>
+                <p>Bear's Sin of Sloth</p>
+            </div>
+        </div>
+
+        <!-- DIANE -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&w=700&q=80"
+                 alt="Diane">
+
+            <div class="symbol">🐍</div>
+
+            <div class="card-content">
+                <h3>Diane</h3>
+                <p>Serpent's Sin of Envy</p>
+            </div>
+        </div>
+
+        <!-- GOWTHER -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80"
+                 alt="Gowther">
+
+            <div class="symbol">🐐</div>
+
+            <div class="card-content">
+                <h3>Gowther</h3>
+                <p>Goat's Sin of Lust</p>
+            </div>
+        </div>
+
+        <!-- MERLIN -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80"
+                 alt="Merlin">
+
+            <div class="symbol">🐗</div>
+
+            <div class="card-content">
+                <h3>Merlin</h3>
+                <p>Boar's Sin of Gluttony</p>
+            </div>
+        </div>
+
+        <!-- ESCANOR -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=700&q=80"
+                 alt="Escanor">
+
+            <div class="symbol">🦁</div>
+
+            <div class="card-content">
+                <h3>Escanor</h3>
+                <p>Lion's Sin of Pride</p>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        Created with 🔥 by <strong>Deadly Sins</strong>
+    </p>
+</footer>
+
+<div class="fire"></div>
+
+</body>
+</html>
+```
+
+**Yang sudah ada di dalamnya:**
+
+* 🔥 Tema gelap merah/oranye ala *Deadly Sins*
+* 🔄 Gambar utama **berputar 3D otomatis**
+* 🌀 Simbol tiap karakter ikut berputar
+* ✨ Efek glowing pada judul
+* 🖱️ Efek hover pada kartu karakter
+* 📱 Responsive untuk HP
+* 🌌 Animasi background
+* 🔥 Efek cahaya/api di bagian bawah
+* 7 kartu: **Meliodas, Ban, King, Diane, Gowther, Merlin, Escanor**
+
+Kalau ingin gambar karakter **benar-benar gambar Meliodas/Ban/King dan lainnya**, URL pada bagian `<img src="...">` tinggal diganti dengan gambar karakter yang kamu punya.
+  
